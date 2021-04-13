@@ -1,5 +1,13 @@
 package alapmuvgyak;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
 public class Muveletek extends javax.swing.JFrame {
 
     /**
@@ -211,6 +219,11 @@ public class Muveletek extends javax.swing.JFrame {
         mnuFajl.add(mnuFajlMegnyit);
 
         mnuFajlMent.setText("Ment");
+        mnuFajlMent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuFajlMentActionPerformed(evt);
+            }
+        });
         mnuFajl.add(mnuFajlMent);
         mnuFajl.add(jSeparator1);
 
@@ -298,13 +311,49 @@ public class Muveletek extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMegoldasActionPerformed
 
     private void mnuMuveletOsszeadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMuveletOsszeadasActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mnuMuveletOsszeadasActionPerformed
 
     private void mnuMuveletKivonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMuveletKivonasActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mnuMuveletKivonasActionPerformed
 
+    private void mnuFajlMentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentActionPerformed
+        
+        JFileChooser fc = new JFileChooser();
+        
+        fc.setDialogTitle("Fájl mentése");
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setCurrentDirectory(new File("."));
+        
+        
+        int valasztottGombErteke = fc.showSaveDialog(this);
+        
+        
+        if(valasztottGombErteke == JFileChooser.APPROVE_OPTION){
+            
+            File f = fc.getSelectedFile();
+            
+            if(f.isDirectory()){
+            
+                lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Könyvtár: " + f.getName() + "</html>");
+                
+                try {
+                    
+                    Files.write(Paths.get(f.getPath(), "stat.txt"), "Statisztika:".getBytes());
+                    
+                } catch (IOException ex) {
+                    
+                    Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        }
+    }//GEN-LAST:event_mnuFajlMentActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
