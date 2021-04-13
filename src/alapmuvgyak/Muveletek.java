@@ -228,6 +228,11 @@ public class Muveletek extends javax.swing.JFrame {
         mnuFajl.add(jSeparator1);
 
         mnuFajlMentMasknet.setText("Mentés másként...");
+        mnuFajlMentMasknet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuFajlMentMasknetActionPerformed(evt);
+            }
+        });
         mnuFajl.add(mnuFajlMentMasknet);
 
         mnuFajlKilep.setText("Kilép");
@@ -320,6 +325,8 @@ public class Muveletek extends javax.swing.JFrame {
 
     private void mnuFajlMentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentActionPerformed
         
+        // MENTÉS
+        
         JFileChooser fc = new JFileChooser();
         
         fc.setDialogTitle("Fájl mentése");
@@ -350,6 +357,37 @@ public class Muveletek extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_mnuFajlMentActionPerformed
+
+    private void mnuFajlMentMasknetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentMasknetActionPerformed
+        
+        // MENTÉS MÁSKÉNT
+        
+        JFileChooser fc = new JFileChooser(new File("."));
+        
+        fc.setDialogTitle("Mentés másként");
+        
+        
+        int valasztottGombErteke = fc.showSaveDialog(this);
+        
+        
+        if(valasztottGombErteke == JFileChooser.APPROVE_OPTION){
+            
+            File f = fc.getSelectedFile();
+            
+            
+            lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Könyvtár: " + f.getName() + "</html>");
+                
+            try {
+                    
+                Files.write(Paths.get(f.getPath(), "stat.txt"), "Statisztika:".getBytes());
+                    
+            } catch (IOException ex) {
+                    
+                Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }//GEN-LAST:event_mnuFajlMentMasknetActionPerformed
 
     
     
