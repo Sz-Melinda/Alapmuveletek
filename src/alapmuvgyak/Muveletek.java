@@ -14,6 +14,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Muveletek extends javax.swing.JFrame {
 
+    
+    String mentettFajl;
+    
+    
     /**
      * Creates new form Muveletek
      */
@@ -331,6 +335,7 @@ public class Muveletek extends javax.swing.JFrame {
         
         // MENTÉS
         
+        /*
         JFileChooser fc = new JFileChooser();
         
         fc.setDialogTitle("Fájl mentése");
@@ -360,6 +365,22 @@ public class Muveletek extends javax.swing.JFrame {
             }
             
         }
+        */
+        
+        if(mentettFajl == null){
+        
+            mnuFajlMentMasknetActionPerformed(evt);
+
+        }else{
+            
+            try {
+                Files.write(Paths.get(mentettFajl),"Statisztika:".getBytes());
+            }catch (IOException ex) {
+                Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
     }//GEN-LAST:event_mnuFajlMentActionPerformed
 
     private void mnuFajlMentMasknetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentMasknetActionPerformed
@@ -395,7 +416,11 @@ public class Muveletek extends javax.swing.JFrame {
             }
 
 
+            
             boolean mentes = true;
+            mentettFajl = fn;
+            
+            
             
             Path path = Paths.get(fn);
             
