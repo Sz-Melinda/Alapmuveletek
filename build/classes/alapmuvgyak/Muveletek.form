@@ -88,6 +88,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Oszt&#xe1;s"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMuveletOsztasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="mnuMuveletSzorzas">
               <Properties>
@@ -96,6 +99,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Szorz&#xe1;s"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMuveletSzorzasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
